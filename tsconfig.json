@@ -3,7 +3,11 @@
     "baseUrl": "src",
     "rootDir": "src",
     "paths": {
-      "@/*": ["*"]
-    }
+      "@/*": [
+        "*"
+      ]
+    },
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
   }
 }
