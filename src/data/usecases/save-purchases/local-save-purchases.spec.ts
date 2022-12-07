@@ -74,7 +74,7 @@ describe('LocalSavePurchases', () => {
         expect(promise).rejects.toThrow();
     })
 
-    test('Should throw if insert throws', async () => {
+    test('Should insert new Cache if delete succeeds', async () => {
         const { cacheStore, sut } = makeSut();
         const purchases = mockPurchases();
         await sut.save(purchases);
@@ -83,5 +83,6 @@ describe('LocalSavePurchases', () => {
         expect(cacheStore.insertKey).toBe('purchases');
         expect(cacheStore.insertValues).toEqual(purchases);
     })
+
 })
 
