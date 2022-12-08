@@ -5,11 +5,17 @@ export class CacheStoreSpy implements CacheStore {
     actions: Array<CacheStoreSpy.Action> = [];
     deleteKey: string;
     insertKey: string;
+    fetchKey: string;
     insertValues: Array<SavePurchases.Params>
 
     delete(key: string): void {
         this.actions.push(CacheStoreSpy.Action.delete)
         this.deleteKey = key;
+    }
+    
+    fetch(key: string): void {
+        this.actions.push(CacheStoreSpy.Action.fetch)
+        this.fetchKey = key;
     }
 
     insert(key: string, value: any): void {
@@ -40,6 +46,6 @@ export class CacheStoreSpy implements CacheStore {
 
 export namespace CacheStoreSpy {
     export enum Action {
-        insert, delete
+        insert, delete, fetch
     }
 }
