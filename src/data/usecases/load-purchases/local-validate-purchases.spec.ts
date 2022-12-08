@@ -1,5 +1,5 @@
 import { LocalLoadPurchases } from '@/data/usecases'
-import {  CacheStoreSpy } from '@/data/tests';
+import {  CacheStoreSpy, getCacheExpirationDate } from '@/data/tests';
 
 
 type SutTypes = {
@@ -31,7 +31,15 @@ describe('LocalLoadPurchases', () => {
         expect(cacheStore.deleteKey).toBe('purchases');
     })   
 
-
-    
+    test('Should has no side effects if load succeeds', () => {
+        const currentDate = new Date();
+        const timestamp = getCacheExpirationDate(currentDate);
+        timestamp.setSeconds(timestamp.getSeconds() + 1);
+        const { cacheStore, sut } = makeSut(currentDate);
+        cacheStore.fetchResult = { timestamp }
+        sut.validate(); 
+        expect(cacheStore.actions).toEqual([CacheStoreSpy.Action.fetch]);
+        expect(cacheStore.fetchKey).toBe('purchases');
+    })  
 })
 
