@@ -1,4 +1,4 @@
-# Carregar compras do Cache
+# Carregar Compras do Cache
 
 > ## Case de sucesso
 
@@ -10,7 +10,7 @@
 
 > ## Exceção - Cache expirado
 1. Sistema limpa o Cache.
-2. Sistema retorna erro.
+2. Sistema retorna uma lista vazia.
 
 > ## Exceção - Cache vazio
-1. Sistema retorna erro
+1. Sistema retorna uma lista vazia.
